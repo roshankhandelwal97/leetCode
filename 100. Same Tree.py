@@ -8,31 +8,13 @@
 #         self.right = right
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        flag = [0]
-        def dfs(p,q):
-
-            if not p and not q: 
-                return 
-            if not p and q: 
-                flag[0] = 1
-                return
-            if p and not q: 
-                flag[0] = 1
-                return
-            if p.val != q.val:
-                print("Inside if condition")
-                flag[0] = 1
-                return
-        
-            dfs(p.left, q.left)
-            dfs(p.right, q.right)
-        
-        dfs(p,q)
-        if flag[0] == 0: 
+        if not p and not q: 
             return True
-        else: 
-            return False
-            
+        
+        if p and q and p.val == q.val: 
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        
+        return False
 
             
             
